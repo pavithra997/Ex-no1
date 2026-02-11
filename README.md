@@ -54,19 +54,20 @@ END
 
 #### Output Table
 
-| MEMORY LOCATION (INPUT) | MEMORY LOCATION (OUTPUT) |
-| ----------------------- | ------------------------ |
-|       1200🔢       01         12
-
-|         1200                    |
+| MEMORY LOCATION (OUTPUT) |
+| 1200  01 |
+| 58    13 |
 
 #### Manual Calculations
 
-(Add your calculation here)
-
----
-
+AX  1234H
+BX  124H
+------------
+    5813
+    
 ## OUTPUT IMAGE FROM MASM SOFTWARE
+<img width="1087" height="755" alt="image" src="https://github.com/user-attachments/assets/91c3c120-e1a8-4461-8ceb-1e5087120373" />
+
 
 ## 2. SUBTRACTION
 
@@ -88,16 +89,15 @@ END
 CODE SEGMENT
 ASSUME CS: CODE, DS: CODE
 ORG 1000H
-MOV SI,2000H
 MOV CL,00H
-MOV AX,[SI]
-MOV BX,[SI+02H]
-SUB AX,BX
+MOV AX,1234H
+MOV BX,124H
+ADD AX,BX
 JNC L1
 INC CL
-L1:
-MOV [SI+04H],AX
-MOV [SI+06H],CL
+L1:MOV SI,1200H
+MOV [SI], AX
+MOV [SI+2], CL
 MOV AH,4CH
 INT 21H
 CODE ENDS
@@ -107,18 +107,20 @@ END
 
 #### Output Table
 
-| MEMORY LOCATION (INPUT) | MEMORY LOCATION (OUTPUT) |
-| ----------------------- | ------------------------ |
-|                         |                          |
+| MEMORY LOCATION (OUTPUT) |
+| 1200      01 |
+|  10       11 |                          
 
 #### Manual Calculations
 
-(Add your calculation here)
-
----
-
+AX 1234H
+BX 124H
+-------------
+   1011
 
 ## OUTPUT SCREEN FROM MASM SOFTWARE
+<img width="1125" height="747" alt="image" src="https://github.com/user-attachments/assets/b3c5c811-75d8-49fa-bf52-5bbe405f621a" />
+
 
 ## 3. MULTIPLICATION
 
@@ -141,13 +143,13 @@ END
 CODE SEGMENT
 ASSUME CS: CODE, DS: CODE
 ORG 1000H
-MOV SI,2000H
 MOV DX,0000H
-MOV AX,[SI]
-MOV BX,[SI+02H]
+MOV AX,1234H
+MOV BX,124H
 MUL BX
-MOV [SI+04H],AX
-MOV [SI+06H],DX
+MOV SI,1200H
+MOV [SI],AX
+MOV [SI+02H],DX
 MOV AH,4CH
 INT 21H
 CODE ENDS
@@ -156,17 +158,20 @@ END
 
 #### Output Table
 
-| MEMORY LOCATION (INPUT) | MEMORY LOCATION (OUTPUT) |
-| ----------------------- | ------------------------ |
-|                         |                          |
+| MEMORY LOCATION (OUTPUT) |
+| 1200  01  02  03 |
+|  58   13  00  EB |                          
 
 #### Manual Calculations
 
-(Add your calculation here)
-
----
-
+AX  1234H
+BX  124H
+--------------
+   581300EB
+   
 ## OUTPUT SCREEN FROM MASM SOFTWARE
+<img width="1156" height="751" alt="image" src="https://github.com/user-attachments/assets/fc4c4bd4-f375-4e3f-8406-1392be9693d2" />
+
 
 ## 4. DIVISION
 
@@ -183,16 +188,16 @@ END
 #### Program
 
 ```asm
-CODE SEGMENT
-ASSUME CS: CODE, DS: CODE
+CODE SEGMENT 
+ASSUME CS:CODE,DS:CODE
 ORG 1000H
-MOV SI,2000H
 MOV DX,0000H
-MOV AX,[SI]
-MOV BX,[SI+02H]
+MOV AX,1234H
+MOV BX,124H
 DIV BX
-MOV [SI+04H],AX
-MOV [SI+06H],DX
+MOV SI,1200H
+MOV[SI],AX
+MOV[SI+02H],DX
 MOV AH,4CH
 INT 21H
 CODE ENDS
@@ -201,16 +206,20 @@ END
 
 #### Output Table
 
-| MEMORY LOCATION (INPUT) | MEMORY LOCATION (OUTPUT) |
-| ----------------------- | ------------------------ |
-|                         |                          |
+| MEMORY LOCATION (OUTPUT) |
+| 1200   01   02    03 |
+|  01    00   00    E8 |                          
 
 #### Manual Calculations
 
-(Add your calculation here)
-
----
+AX  1234H
+BX  124H
+---------------
+    010000E8
+    
 ## OUTPUT FROM MASM SOFTWARE
+<img width="1132" height="750" alt="image" src="https://github.com/user-attachments/assets/f98b42a0-044b-4616-ac9a-3965f284d987" />
+
 
 
 
